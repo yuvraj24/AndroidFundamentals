@@ -1,7 +1,10 @@
 package com.arch.components.architecture.viewmodels
 
 import android.arch.lifecycle.ViewModel
-import com.arch.components.architecture.repository.CharacterRepository
+import com.arch.components.api.NetworkService
+import com.arch.components.architecture.repository.MainBaseRepository
+import com.arch.components.ui.activity.AppController
+import javax.inject.Inject
 
 
 /**
@@ -9,12 +12,16 @@ import com.arch.components.architecture.repository.CharacterRepository
  */
 public open class BaseViewModel : ViewModel() {
 
-    private var repository : CharacterRepository? = null;
+    @Inject
+    private var repository : MainBaseRepository? = null;
 
-    public fun getCharacterRepo() : CharacterRepository {
-        if(repository == null){
-            repository = CharacterRepository();
+    public fun getRepository(): MainBaseRepository {
+        if (repository == null) {
+            DaggerDependancyInjection.builder()
+                    .networkServiceComponent(AppController.getComponent())
+                    .build()
+                    .inject(this)
         }
-        return repository!!;
+        return repository!!
     }
 }

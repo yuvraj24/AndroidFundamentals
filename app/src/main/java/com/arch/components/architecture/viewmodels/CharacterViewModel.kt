@@ -14,7 +14,7 @@ public class CharacterViewModel : BaseViewModel() {
     fun getActionCharacters(): MutableLiveData<CharacterResponse> {
         if (liveData == null) {
             liveData = MutableLiveData<CharacterResponse>()
-            liveData = getCharacterRepo().getCharacterResponse();
+            liveData = getRepository().getCharacterResponse();
         }
         return liveData!!
     }

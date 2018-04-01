@@ -12,16 +12,15 @@ import io.reactivex.schedulers.Schedulers
 /**
  * Created by Yuvraj on 27/03/18.
  */
-class CharacterRepository : BaseRepository() {
+class MainBaseRepository : BaseRepository() {
 
     fun getCharacterResponse(): MutableLiveData<CharacterResponse> {
 
         val data = MutableLiveData<CharacterResponse>();
-        getNetworkService()
-                .getActionCharacters(Constants.PUBLIC_KEY,
-                        "1522155136090",
-                        AppUtils.getMD5String("1522155136090" +
-                                Constants.PRIVATE_KEY + Constants.PUBLIC_KEY))
+        getNetworkService().getActionCharacters(Constants.PUBLIC_KEY,
+                "1522155136090",
+                AppUtils.getMD5String("1522155136090" +
+                        Constants.PRIVATE_KEY + Constants.PUBLIC_KEY))
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe({ response ->

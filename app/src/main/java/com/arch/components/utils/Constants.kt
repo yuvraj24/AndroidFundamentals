@@ -3,7 +3,7 @@ package com.arch.components.utils
 /**
  * Created by Yuvraj on 27/03/18.
  */
-class Constants {
+open class Constants {
 
     companion object {
         //TODO Remove KEYS
